@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -62,10 +63,61 @@ public class ChooseSpeech : MonoBehaviour {
 		speak(type);
 	}
 	void speak(SpeechType type){
+		StringBuilder sb = new StringBuilder("");
+		List<String> dialogue = new List<String>();
+		string whichDest = "Phoenix, Arizona";
 		switch(type){
+			case SpeechType.TimeLeft:
+				string timeString = "5 minutes ";
+				sb.Append("You have ");
+				sb.Append(timeString);
+				sb.Append("remaining in your flight!");
+				dialogue.Add(sb.ToString());
+				break;
+			case SpeechType.CurrentLocationFact:
+				string locationString = "The Grand Canyon";
+				sb.Append("You are right over ");
+				sb.Append(locationString);
+				dialogue.Add(sb.ToString());
+				break;
+			case SpeechType.CurrentWeather:
+				string weatherString = "Sunny, 75 Degrees";
+				sb.Append("The weather right under us is ");
+				dialogue.Add(sb.ToString());
+				sb = new StringBuilder();
+				sb.Append(weatherString);
+				dialogue.Add(sb.ToString());
+				break;
+			case SpeechType.DestinationFact:
+				string destIntro = "Hey, I saw you're going to";
+				string destFact = "Did you know that it was founded on Valentines Day, 1912?";
+				sb.Append(destIntro);
+				sb.Append(whichDest);
+				dialogue.Add(sb.ToString());
+				sb = new StringBuilder();
+				sb.Append(destFact);
+				dialogue.Add(sb.ToString());
+				break;
+			case SpeechType.DestinationWeather:
+				string destIntro2 = "You're headed for " + whichDest+ " right?";
+				string destWeatherIntro = "The weather there is ";
+				string destWeather = "Rainy, 60 degrees";
+				sb.Append(destIntro2);
+				dialogue.Add(sb.ToString());
+				sb = new StringBuilder();
+				sb.Append(destWeatherIntro);
+				dialogue.Add(sb.ToString());
+				sb = new StringBuilder();
+				sb.Append(destWeather);
+				dialogue.Add(sb.ToString());
+				break;
 			case SpeechType.General:
 			default:
-				Debug.Log("Q: What do you call the movie where pilots fight to take off? A: The Hanger games");
+				sb.Append("What do you call the movie where pilots fight to take off?");
+				dialogue.Add(sb.ToString());
+				sb = new StringBuilder();
+				sb.Append("The Hanger games");
+				dialogue.Add(sb.ToString());
 				break;
 		}
 	}
