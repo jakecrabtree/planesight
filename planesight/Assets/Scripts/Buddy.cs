@@ -61,6 +61,7 @@ public class Buddy : MonoBehaviour {
 		}
 		else if (movingBack && readyToMoveOn){
 			movingBack = false;
+			transform.parent.rotation = homeRot;
 		}
 		
 	}
@@ -89,10 +90,10 @@ public class Buddy : MonoBehaviour {
 		startPos = transform.parent.position;
 		endPos = homePos;
 
-		/* Vector3 relativePos = point - transform.parent.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+		Vector3 relativePos = homePos - transform.parent.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, transform.parent.up);
 		rotation.y = 0;
-        transform.parent.rotation = rotation;*/
+        transform.parent.rotation = rotation;
 
 		startTime = Time.time;
 		currTime = startTime;
@@ -103,6 +104,7 @@ public class Buddy : MonoBehaviour {
 		if (!homeSet){
 			homeSet = true;
 			homePos = transform.parent.position;
+			homeRot = transform.parent.rotation;
 		}
 		movingBack = false;
 		moving = true;
@@ -110,10 +112,10 @@ public class Buddy : MonoBehaviour {
 		startPos = transform.parent.position;
 		endPos = point;
 
-		/* Vector3 relativePos = point - transform.parent.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+		Vector3 relativePos = point - transform.parent.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, transform.parent.up);
 		rotation.y = 0;
-        transform.parent.rotation = rotation;*/
+        transform.parent.rotation = rotation;
 
 		startTime = Time.time;
 		currTime = startTime;
