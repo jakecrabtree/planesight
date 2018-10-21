@@ -157,7 +157,7 @@ public class APIWrapper {
         string html = string.Empty;
         string url = @"https://planesight-hacktx2018.appspot.com/wiki?title=" + str;
         ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;
-        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url1);
+        HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
         request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
 
         using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
