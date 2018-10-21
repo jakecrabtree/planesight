@@ -1285,6 +1285,24 @@ Prefab:
       propertyPath: buddyObj
       value: 
       objectReference: {fileID: 1690053357}
+    - target: {fileID: 114533667841201762, guid: ebb506b178f121b4abbcb07775e93b7b,
+        type: 2}
+      propertyPath: childrenToSpawn.Array.data[0]
+      value: 
+      objectReference: {fileID: 1552706155397946, guid: 5cd75f99eba89604ab3de9b2ebfaf254,
+        type: 2}
+    - target: {fileID: 114533667841201762, guid: ebb506b178f121b4abbcb07775e93b7b,
+        type: 2}
+      propertyPath: childrenToSpawn.Array.data[1]
+      value: 
+      objectReference: {fileID: 1552706155397946, guid: 5cd75f99eba89604ab3de9b2ebfaf254,
+        type: 2}
+    - target: {fileID: 114533667841201762, guid: ebb506b178f121b4abbcb07775e93b7b,
+        type: 2}
+      propertyPath: childrenToSpawn.Array.data[2]
+      value: 
+      objectReference: {fileID: 1552706155397946, guid: 5cd75f99eba89604ab3de9b2ebfaf254,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ebb506b178f121b4abbcb07775e93b7b, type: 2}
   m_IsPrefabAsset: 0
@@ -2048,9 +2066,14 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4454277458629476, guid: 83d186faa31e1c54e98af3a020bc5d77, type: 2}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+    - target: {fileID: 1333309866054276, guid: 83d186faa31e1c54e98af3a020bc5d77, type: 2}
+      propertyPath: m_TagString
+      value: Buddy
+      objectReference: {fileID: 0}
+    - target: {fileID: 65848893206040558, guid: 83d186faa31e1c54e98af3a020bc5d77,
+        type: 2}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83d186faa31e1c54e98af3a020bc5d77, type: 2}

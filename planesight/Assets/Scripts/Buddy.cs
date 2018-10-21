@@ -39,8 +39,8 @@ public class Buddy : MonoBehaviour {
 			}
 			else{
 				if (path.Count > 0){
-					Transform transform = path.Dequeue();
-					MoveToPoint(transform.position);
+					Transform t = path.Dequeue();
+					MoveToPoint(t.position);
 				}
 				else{
 					Debug.Log("Going Home");
@@ -125,5 +125,10 @@ public class Buddy : MonoBehaviour {
 	}
 	public void addToMoveQueue(Transform transform){
 		path.Enqueue(transform);
+	}
+
+	public void stop(){
+		endPos = transform.parent.position;
+		endTime = Time.time;
 	}
 }

@@ -7,6 +7,8 @@ public class FruitBundle : MonoBehaviour {
     float timeSinceBite;
     bool isTouching;
     [SerializeField]float EatSpeed = 2f;
+
+    Buddy buddy;
 	// Use this for initialization
 	void Start () {
 		
@@ -26,6 +28,8 @@ public class FruitBundle : MonoBehaviour {
     {
         Debug.Log("Fruit col" + collision.gameObject.tag +", time since bite " + (int) timeSinceBite + "eat spd " + EatSpeed + " eqVal " + (timeSinceBite >= EatSpeed));
         if (collision.gameObject.tag.Equals("Buddy")) {
+            collision.gameObject.GetComponent<Buddy>().stop();
+            buddy = collision.gameObject.GetComponent<Buddy>();
             isTouching = true;
         }       
 
@@ -33,7 +37,8 @@ public class FruitBundle : MonoBehaviour {
 
     private void OnCollisionExit(Collision collision)
     {
-        if(collision.gameObject.tag.Equals("Buddy")) isTouching = false;
+        //Debug.Log("exits");
+        //if(collision.gameObject.tag.Equals("Buddy")) isTouching = false;
     }
 
     public void TakeBite()
@@ -41,11 +46,12 @@ public class FruitBundle : MonoBehaviour {
         Debug.Log("bite");
         timeSinceBite = 0;
         if (transform.childCount == 1) {
-            GameObject.FindGameObjectWithTag("Buddy").GetComponent<Buddy>().MoveOn();
+            buddy.MoveOn();
             Destroy(gameObject);
         }
         Transform child = transform.GetChild(0);
         Destroy(child.gameObject);
 
     }
+
 }
