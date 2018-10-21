@@ -60,6 +60,7 @@ public class PlaneManager : MonoBehaviour
     static bool anchorExists; // backs public AnchorExists property
     bool placementCompleted = false;
     public GameObject arCamera;
+    public GameObject m_Items_UI;
     #endregion // PRIVATE_MEMBERS
 
 
@@ -271,6 +272,7 @@ public class PlaneManager : MonoBehaviour
         placementCompleted = true;
         m_Confirm_Button.SetActive(false);
         arCamera.transform.GetChild(2).gameObject.SetActive(false);
+        m_Items_UI.SetActive(true);
         //Load in new UI
     }
 

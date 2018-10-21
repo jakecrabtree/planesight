@@ -30,7 +30,6 @@ public class TextBubble : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
-        
         textBox = GameObject.FindGameObjectWithTag("panel");
         textBox.SetActive(false);
 
