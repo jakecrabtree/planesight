@@ -7,6 +7,9 @@ public class Buddy : MonoBehaviour {
 
 	ChooseSpeech speech;
 	public TextBubble bubble;
+	private Vector3 homePos;
+	private Quaternion homeRot;
+
 	Vector3 startPos;
 	Vector3 endPos;
 	float moveTime = 2;
@@ -15,29 +18,51 @@ public class Buddy : MonoBehaviour {
 	float endTime = 0;
 	bool moving = false;
 	bool movingBack = false;
+	bool homeSet = false;
+
+	bool readyToMoveOn = true;
+	bool atDestination = false;
+
+	Queue<Transform> path;
 
 	// Use this for initialization
 	void Start () {
+		path = new Queue<Transform>();
 		speech = gameObject.GetComponent<ChooseSpeech>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.Space)){
-			MoveToPoint(transform.parent.position + new Vector3(0,0,1));
-			Debug.Log("called");
-		}
-		
 		if ((moving||movingBack) && (currTime = Time.time) < endTime){
-			transform.parent.position = Vector3.Lerp(startPos, endPos, (currTime-startTime)/moveTime);
+			if (moving){
+				transform.parent.position = Vector3.Lerp(startPos, endPos, (currTime-startTime)/moveTime);
+			}
+			else{
+				if (path.Count > 0){
+					Transform transform = path.Dequeue();
+					MoveToPoint(transform.position);
+				}
+				else{
+					Debug.Log("Going Home");
+					transform.parent.position = Vector3.Lerp(startPos, endPos, (currTime-startTime)/moveTime);
+				}
+			}
 		}
-		else if (moving){
-			MoveToPoint(startPos);
+		else if(moving && !atDestination && readyToMoveOn){
+			atDestination = true;
+			readyToMoveOn = false;
 		}
-		else if (movingBack){
+		else if (path.Count > 0 && readyToMoveOn){
+			Transform transform = path.Dequeue();
+			MoveToPoint(transform.position);
+		}
+		else if (moving && readyToMoveOn){
+			MoveHome();
+		}
+		else if (movingBack && readyToMoveOn){
 			movingBack = false;
 		}
-
+		
 	}
 
 	/// <summary>
@@ -57,15 +82,31 @@ public class Buddy : MonoBehaviour {
 		}
 	}
 
+	private void MoveHome(){
+		moving = false;
+		movingBack = true;
+		atDestination = false;
+		startPos = transform.parent.position;
+		endPos = homePos;
+
+		/* Vector3 relativePos = point - transform.parent.position;
+        Quaternion rotation = Quaternion.LookRotation(relativePos, Vector3.up);
+		rotation.y = 0;
+        transform.parent.rotation = rotation;*/
+
+		startTime = Time.time;
+		currTime = startTime;
+		endTime = startTime+moveTime;
+	}
+
 	public void MoveToPoint(Vector3 point){
-		if (moving){
-			moving = false;
-			movingBack = true;
+		if (!homeSet){
+			homeSet = true;
+			homePos = transform.parent.position;
 		}
-		else{
-			moving = true;
-			movingBack = false;
-		}
+		movingBack = false;
+		moving = true;
+		atDestination = false;
 		startPos = transform.parent.position;
 		endPos = point;
 
@@ -77,5 +118,12 @@ public class Buddy : MonoBehaviour {
 		startTime = Time.time;
 		currTime = startTime;
 		endTime = startTime+moveTime;
+	}
+
+	public void MoveOn(){
+		readyToMoveOn = true;
+	}
+	public void addToMoveQueue(Transform transform){
+		path.Enqueue(transform);
 	}
 }

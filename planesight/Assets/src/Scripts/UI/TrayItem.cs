@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class TrayItem : MonoBehaviour, IPointerDownHandler
 {
     
+    public Buddy buddy;
     [HideInInspector] public GameObject obj;
 
 
@@ -18,12 +19,17 @@ public class TrayItem : MonoBehaviour, IPointerDownHandler
 
     }
 
+    public void initializeBuddy(Buddy bud){
+        buddy = bud;
+    }
     public void OnPointerDown(PointerEventData eventData)
     {   
         
         GameObject newItem = Instantiate(obj, Input.mousePosition, transform.rotation, transform.root);
         
         newItem.AddComponent<SpawnedTrayItem>();
+        newItem.GetComponent<SpawnedTrayItem>().initializeBuddy(buddy);
         newItem.transform.SetParent(transform.root);
+        
     }
 }

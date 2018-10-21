@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class ChildSpawner : MonoBehaviour {
 
+    public GameObject buddyObj;
     [SerializeField] private List<GameObject> childrenToSpawn;
     [SerializeField] TrayItem ti;
     float TotalW;
@@ -17,7 +18,7 @@ public class ChildSpawner : MonoBehaviour {
     void Start () {
         rt = GetComponent<RectTransform>();
         childrenRts = new List<RectTransform>();
- 
+        ti.initializeBuddy(buddyObj.GetComponentInChildren<Buddy>());
 		foreach(GameObject child in childrenToSpawn)
         {
             TrayItem curr = Instantiate(ti, transform);

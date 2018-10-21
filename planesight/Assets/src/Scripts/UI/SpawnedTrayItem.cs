@@ -5,12 +5,17 @@ using UnityEngine.EventSystems;
 
 public class SpawnedTrayItem : MonoBehaviour
 {
+    private Buddy buddy; 
     bool placed;
     public void OnPointerDown(PointerEventData eventData)
     {
         throw new System.NotImplementedException();
     }
 
+
+    public void initializeBuddy(Buddy bud){
+        buddy = bud; 
+    }
     // Use this for initialization
     void Start () {
         placed = false;
@@ -25,6 +30,7 @@ public class SpawnedTrayItem : MonoBehaviour
             transform.position = pos;
             if (!Input.GetMouseButton(0)){
                 placed = true;
+                buddy.addToMoveQueue(transform);
             }
         } else {
             transform.RotateAround(transform.position, Vector3.up, Time.deltaTime*30);
