@@ -48,7 +48,7 @@ public class Buddy : MonoBehaviour {
 				}
 			}
 		}
-		else if(moving && !atDestination && readyToMoveOn){
+		else if(moving && readyToMoveOn && !atDestination){
 			atDestination = true;
 			readyToMoveOn = false;
 		}
@@ -130,7 +130,9 @@ public class Buddy : MonoBehaviour {
 	}
 
 	public void stop(){
+		atDestination = true;
 		endPos = transform.parent.position;
 		endTime = Time.time;
+		readyToMoveOn = false;
 	}
 }

@@ -11,6 +11,7 @@ public class ItemManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        mapping = new Dictionary<string,GameObject>();
 		for (int i=0; i < keys.Count; i++)
         {
             mapping.Add(keys[i], values[i]);
@@ -25,6 +26,6 @@ public class ItemManager : MonoBehaviour {
     public void toggleActive(string key)
     {
         GameObject obj = mapping[key];
-        obj.SetActive(!obj.active);
+        obj.SetActive(true);
     }
 }

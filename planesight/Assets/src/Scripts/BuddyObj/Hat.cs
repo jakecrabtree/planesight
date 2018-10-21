@@ -15,11 +15,10 @@ public class Hat : MonoBehaviour {
         {
             collision.gameObject.GetComponent<Buddy>().stop();
             buddy = collision.gameObject.GetComponent<Buddy>();
-            buddy.GetComponent<ItemManager>().toggleActive("Hat");
-            buddy.MoveOn();
+            buddy.gameObject.GetComponent<ItemManager>().toggleActive("Hat");
+            collision.gameObject.GetComponent<Buddy>().MoveOn();
             Destroy(gameObject);
         }
-        
         
     }
 
