@@ -3,6 +3,50 @@ guid: ca006442ada29574596ce5221b907162
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
+    100000: Bone01
+    100002: Bone02
+    100004: Bone03
+    100006: Bone03(mirrored)
+    100008: Bone04
+    100010: Bone04(mirrored)
+    100012: Bone05
+    100014: Bone05(mirrored)
+    100016: Bone06
+    100018: Bone07
+    100020: Pirinny
+    100022: //RootNode
+    100024: Sphere02
+    400000: Bone01
+    400002: Bone02
+    400004: Bone03
+    400006: Bone03(mirrored)
+    400008: Bone04
+    400010: Bone04(mirrored)
+    400012: Bone05
+    400014: Bone05(mirrored)
+    400016: Bone06
+    400018: Bone07
+    400020: Pirinny
+    400022: //RootNode
+    400024: Sphere02
+    2100000: 03 - Default
+    2100002: 07 - Default
+    2100004: 08 - Default
+    2100006: 20 - Default
+    2100008: 14 - Default
+    2100010: 14 - Defauldt
+    2100012: 15 - Default
+    2100014: 13 - Default
+    2100016: 21 - Default
+    2100018: 09 - Default
+    2100020: No Name
+    2300000: Sphere02
+    3300000: Sphere02
+    4300000: Pirinny
+    4300002: Sphere02
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Pirinny
     2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
@@ -56,7 +100,7 @@ ModelImporter:
     secondaryUVPackMargin: 4
     useFileScale: 1
     previousCalculatedGlobalScale: 1
-    hasPreviousCalculatedGlobalScale: 0
+    hasPreviousCalculatedGlobalScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
