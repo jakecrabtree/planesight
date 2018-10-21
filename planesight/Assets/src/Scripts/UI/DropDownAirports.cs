@@ -14,7 +14,8 @@ public class DropDownAirports : MonoBehaviour
 
     void PopulateList()
     {
-        List<string> airports = new List<string>() {"Ian", "Jake", "David", "Steve", "Nidhen"};
-        dropdown.AddOptions(airports);
+        List<string> airports = APIWrapper.getAirports();
+        
+        dropdown.AddOptions(airports.GetRange(0,75));
     }
 }
