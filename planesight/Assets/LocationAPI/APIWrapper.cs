@@ -60,7 +60,7 @@ public class APIWrapper {
         speed = Double.Parse(lt[3]);
     }
 
-    public static string getWeather(bool Fahrenheit) {
+    public static string getWeather() {
         string html = string.Empty;
         string url = @"https://planesight-hacktx2018.appspot.com/weather?lat=" + lat + "&lon=" + lon;
         ServicePointManager.ServerCertificateValidationCallback = MyRemoteCertificateValidationCallback;

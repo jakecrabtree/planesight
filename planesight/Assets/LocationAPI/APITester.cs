@@ -9,11 +9,13 @@ public class APITester : MonoBehaviour {
 
         //string[] str = APIWrapper.getAirports();
         List<string> lt = APIWrapper.getAirports();
-             
-        //Debug.Log(str);
-        foreach(string s in lt) {
-            Debug.Log(s);
-        }
+        APIWrapper.initialize("AA", 193, "AUS", "LAX");
+        APIWrapper.initialize();
+        string temperature = APIWrapper.getWeather();
+        List<string> cityInfo = APIWrapper.getCity(); //<Austin, Facts about austin from wikipedia>
+        List<string> landMarkInfo = APIWrapper.getLandMark(); //<Grand Canyon, Facts about Grand Canyon>
+
+
 	}
 	
 	// Update is called once per frame
