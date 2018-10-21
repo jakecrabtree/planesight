@@ -89,11 +89,11 @@ public class Buddy : MonoBehaviour {
 		atDestination = false;
 		startPos = transform.parent.position;
 		endPos = homePos;
-
+/* 
 		Vector3 relativePos = homePos - transform.parent.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos, transform.parent.up);
 		rotation.y = 0;
-        transform.parent.rotation = rotation;
+        transform.parent.rotation = rotation;*/
 
 		startTime = Time.time;
 		currTime = startTime;
@@ -111,11 +111,11 @@ public class Buddy : MonoBehaviour {
 		atDestination = false;
 		startPos = transform.parent.position;
 		endPos = point;
-
+/* 
 		Vector3 relativePos = point - transform.parent.position;
         Quaternion rotation = Quaternion.LookRotation(relativePos, transform.parent.up);
 		rotation.y = 0;
-        transform.parent.rotation = rotation;
+        transform.parent.rotation = rotation;*/
 
 		startTime = Time.time;
 		currTime = startTime;
