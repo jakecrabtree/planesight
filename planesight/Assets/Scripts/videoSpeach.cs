@@ -73,8 +73,7 @@ public class videoSpeach : MonoBehaviour {
             if (count == 2)
             {
                 index++;
-                print("index:" + index);
-                print("count:" + count);
+
                 List<string> temp = test[index];
                 bubble.say(temp);
                 count = 0;

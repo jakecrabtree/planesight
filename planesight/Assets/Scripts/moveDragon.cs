@@ -27,8 +27,8 @@ public class moveDragon : MonoBehaviour {
     void Start () {
 
         cameraMain = GameObject.FindGameObjectWithTag("MainCamera");
-        getNextPos();
-        transform.position = currentPos.transform.position;
+        //getNextPos();
+        //transform.position = currentPos.transform.position;
         transform.LookAt(cameraMain.transform.position);
 
     }
