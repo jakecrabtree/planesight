@@ -6,12 +6,11 @@ using UnityEngine;
 public class Buddy : MonoBehaviour {
 
 	ChooseSpeech speech;
-	TextBubble bubble;
+	public TextBubble bubble;
 
 	// Use this for initialization
 	void Start () {
 		speech = gameObject.GetComponent<ChooseSpeech>();
-		bubble = gameObject.transform.parent.GetComponentInChildren<TextBubble>();
 	}
 	
 	// Update is called once per frame

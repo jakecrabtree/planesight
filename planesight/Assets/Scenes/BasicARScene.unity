@@ -1942,36 +1942,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 224154764530743650, guid: 83d186faa31e1c54e98af3a020bc5d77,
-        type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 224154764530743650, guid: 83d186faa31e1c54e98af3a020bc5d77,
-        type: 2}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224154764530743650, guid: 83d186faa31e1c54e98af3a020bc5d77,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.44
-      objectReference: {fileID: 0}
-    - target: {fileID: 224844661338260672, guid: 83d186faa31e1c54e98af3a020bc5d77,
-        type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1.31
-      objectReference: {fileID: 0}
-    - target: {fileID: 114561181688686266, guid: 83d186faa31e1c54e98af3a020bc5d77,
-        type: 2}
-      propertyPath: m_FontData.m_BestFit
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 224154764530743650, guid: 83d186faa31e1c54e98af3a020bc5d77,
-        type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1.5
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 83d186faa31e1c54e98af3a020bc5d77, type: 2}
   m_IsPrefabAsset: 0

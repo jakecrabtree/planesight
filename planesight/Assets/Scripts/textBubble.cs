@@ -30,10 +30,11 @@ public class TextBubble : MonoBehaviour {
     
     // Use this for initialization
 	void Start () {
-
+        
         textBox = GameObject.FindGameObjectWithTag("panel");
         textBox.SetActive(false);
 
+        currentText = GetComponent<Text>();
         currentText.text = "";
     }
 	
@@ -76,11 +77,13 @@ public class TextBubble : MonoBehaviour {
     }
 
     public void say(List<String> dialogue){
+        if (dialogue != null){
         output = dialogue;
         isReady = false;
         arrayIndex = -1;
         textBox.SetActive(true);
         next();
+        }
     }
 
     public void next(){
