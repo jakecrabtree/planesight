@@ -7,6 +7,7 @@ public class ChildSpawner : MonoBehaviour {
 
     public GameObject buddyObj;
     [SerializeField] private List<GameObject> childrenToSpawn;
+    [SerializeField] private List<Sprite> sprites;
     [SerializeField] TrayItem ti;
     float TotalW;
     private RectTransform rt;
@@ -19,14 +20,17 @@ public class ChildSpawner : MonoBehaviour {
         rt = GetComponent<RectTransform>();
         childrenRts = new List<RectTransform>();
         ti.initializeBuddy(buddyObj.GetComponentInChildren<Buddy>());
+        int count = 0;
 		foreach(GameObject child in childrenToSpawn)
         {
             TrayItem curr = Instantiate(ti, transform);
             curr.obj = child;
+            curr.GetComponent<Image>().sprite = sprites[count];
             initW = curr.GetComponent<RectTransform>().rect.width;
             initH = curr.GetComponent<RectTransform>().rect.height;
             TotalW += initW;
             childrenRts.Add(curr.GetComponent<RectTransform>());
+            count++;
         }
         Debug.Log("" + TotalW + "  " + rt.rect.width);
 	}
