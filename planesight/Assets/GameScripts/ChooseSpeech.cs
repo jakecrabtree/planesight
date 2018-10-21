@@ -46,23 +46,16 @@ public class ChooseSpeech : MonoBehaviour {
 		return SpeechType.General;
 	}
 
-	/// <summary>
-	/// OnMouseDown is called when the user has pressed the mouse button while
-	/// over the GUIElement or Collider.
-	/// </summary>
-	void OnMouseDown()
-	{
+	public List<String> speak(){
+		List<String> dialogue = null;
 		if (timer <= 0){
-			speak();
+			SpeechType type = ChooseSpeechType();
+			dialogue = speak(type);
 			timer = timeBetweenLines;
 		}
+		return dialogue;
 	}
-
-	void speak(){
-		SpeechType type = ChooseSpeechType();
-		speak(type);
-	}
-	void speak(SpeechType type){
+	List<String> speak(SpeechType type){
 		StringBuilder sb = new StringBuilder("");
 		List<String> dialogue = new List<String>();
 		string whichDest = "Phoenix, Arizona";
@@ -120,5 +113,6 @@ public class ChooseSpeech : MonoBehaviour {
 				dialogue.Add(sb.ToString());
 				break;
 		}
+		return dialogue;
 	}
 }
