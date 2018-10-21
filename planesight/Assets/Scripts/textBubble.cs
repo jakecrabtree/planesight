@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class textBubble : MonoBehaviour {
 
     public GameObject textBox;
-    private Renderer rend;
+    
 
     public Text currentText = null;
 
@@ -18,8 +18,8 @@ public class textBubble : MonoBehaviour {
     private List<string> eta = new List<string>();
     private List<string> facts = new List<string>();
 
-    int twoArrayindex = 0;
-    int arrayIndex = 0;
+    int arrayOfArrayIndex = 0;
+    int currentArrayIndex = 0;
 
     bool showBox = false;
     bool displayText = false;
@@ -53,7 +53,7 @@ public class textBubble : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        currentArray = output[twoArrayindex];
+        currentArray = output[arrayOfArrayIndex];
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -63,26 +63,26 @@ public class textBubble : MonoBehaviour {
 
         if (showBox)
         {
-            if(arrayIndex == currentArray.Count)
+            if(currentArrayIndex == currentArray.Count)
             {
                 currentText.text = "";
                 textBox.SetActive(false);
             }
             else
-                currentText.text = currentArray[arrayIndex];
-            arrayIndex++;
+                currentText.text = currentArray[currentArrayIndex];
+            currentArrayIndex++;
             showBox = false;
         }
 
-        if(arrayIndex == currentArray.Count + 1)
+        if(currentArrayIndex == currentArray.Count + 1)
         {
-            twoArrayindex++;
-            arrayIndex = 0;
+            arrayOfArrayIndex++;
+            currentArrayIndex = 0;
             showBox = false;
-            if (twoArrayindex == output.Count)
+            if (arrayOfArrayIndex == output.Count)
             {
-                twoArrayindex = 0;
-                arrayIndex = 0;
+                arrayOfArrayIndex = 0;
+                currentArrayIndex = 0;
             }
         }
 
