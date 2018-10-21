@@ -5,7 +5,8 @@ using UnityEngine;
 public class FruitBundle : MonoBehaviour {
 
     float timeSinceBite;
-    [SerializeField]float EatSpeed = 10;
+    bool isTouching;
+    [SerializeField]float EatSpeed = 2f;
 	// Use this for initialization
 	void Start () {
 		
@@ -13,22 +14,38 @@ public class FruitBundle : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        if(isTouching)
+        {
+            timeSinceBite += Time.deltaTime;
+            if (timeSinceBite >= EatSpeed) TakeBite();
+        }
 	}
+
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Buddy") {
-            timeSinceBite += Time.deltaTime;
-            if (timeSinceBite >= EatSpeed) TakeBite();
+        Debug.Log("Fruit col" + collision.gameObject.tag +", time since bite " + (int) timeSinceBite + "eat spd " + EatSpeed + " eqVal " + (timeSinceBite >= EatSpeed));
+        if (collision.gameObject.tag.Equals("Buddy")) {
+            isTouching = true;
         }       
 
     }
 
+    private void OnCollisionExit(Collision collision)
+    {
+        if(collision.gameObject.tag.Equals("Buddy")) isTouching = false;
+    }
+
     public void TakeBite()
     {
+        Debug.Log("bite");
         timeSinceBite = 0;
+        if (transform.childCount == 1) {
+            GameObject.FindGameObjectWithTag("Buddy").GetComponent<Buddy>().MoveOn();
+            Destroy(gameObject);
+        }
         Transform child = transform.GetChild(0);
-        if (child == null) Destroy(gameObject);
-        else Destroy(child.gameObject);
+        Destroy(child.gameObject);
+
     }
 }
