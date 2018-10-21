@@ -83,6 +83,12 @@ public class Buddy : MonoBehaviour {
 		}
 	}
 
+	public void SayFact(){
+		List<String> dialogue = speech.speakFact();
+		dialogue.Insert(0,"Wow, thanks for that nugget of info!");
+		bubble.say(dialogue);
+	}
+
 	private void MoveHome(){
 		moving = false;
 		movingBack = true;

@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ChooseSpeech : MonoBehaviour {
 
-	public enum SpeechType{General, CurrentLocationFact, CurrentWeather, TimeLeft, DestinationWeather, DestinationFact};
+	public enum SpeechType{General, CurrentWeather, TimeLeft, DestinationWeather, CurrentLocationFact, DestinationFact};
 	HashSet<SpeechType> recentlyUsed;
 	Queue<SpeechType> recentlyUsedQueue;
 	int set_size = 2;
@@ -54,6 +54,13 @@ public class ChooseSpeech : MonoBehaviour {
 			timer = timeBetweenLines;
 		}
 		return dialogue;
+	}
+
+	public List<String> speakFact(){
+		int len = Enum.GetNames(typeof(SpeechType)).Length;
+		List<String> dialogue = null;
+		SpeechType type = (SpeechType)UnityEngine.Random.Range(len-2,len);
+		return speak(type);
 	}
 	List<String> speak(SpeechType type){
 		StringBuilder sb = new StringBuilder("");

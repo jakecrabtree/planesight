@@ -12,10 +12,14 @@ public class DropDownAirports : MonoBehaviour
         PopulateList();
     }
 
+    private int min(int a, int b){
+        return (a < b)? a : b;
+    }
+
     void PopulateList()
     {
         List<string> airports = APIWrapper.getAirports();
         
-        dropdown.AddOptions(airports.GetRange(0,75));
+        dropdown.AddOptions(airports.GetRange(0,min(airports.Count, 500)));
     }
 }
