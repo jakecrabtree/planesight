@@ -3,57 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Text;
 using UnityEngine.UI;
+using System;
 
-public class textBubble : MonoBehaviour {
+public class TextBubble : MonoBehaviour {
 
-    public GameObject textBox;
+    private GameObject textBox;
     private Renderer rend;
 
+    public bool isReady = true;
     public Text currentText = null;
-
-    private List<List<string>> output = new List<List<string>>();
-
+/* 
     private List<string> jokes = new List<string>();
     private List<string> weather = new List<string>();
     private List<string> eta = new List<string>();
-    private List<string> facts = new List<string>();
+    private List<string> facts = new List<string>();*/
 
-    int twoArrayindex = 0;
+
     int arrayIndex = 0;
 
     bool showBox = false;
     bool displayText = false;
 
-    List<string> currentArray = null;
+    List<string> output = null;
 
     StringBuilder text = new StringBuilder();
     
     // Use this for initialization
 	void Start () {
-
+        
         textBox = GameObject.FindGameObjectWithTag("panel");
         textBox.SetActive(false);
 
-        addJokes(jokes);
-        addWeather(weather);
-        addFacts(facts);
-        addETA(eta);
-
-
-        output.Add(jokes);
-        output.Add(facts);
-        output.Add(weather);
-        output.Add(eta);
-
+        currentText = GetComponent<Text>();
         currentText.text = "";
-        
-        
     }
 	
 	// Update is called once per frame
 	void Update () {
-
-        currentArray = output[twoArrayindex];
+        /*         currentArray = output[twoArrayindex];
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -63,52 +50,53 @@ public class textBubble : MonoBehaviour {
 
         if (showBox)
         {
-            if(arrayIndex == currentArray.Count)
+            if(currentArrayIndex == currentArray.Count)
             {
                 currentText.text = "";
                 textBox.SetActive(false);
             }
             else
-                currentText.text = currentArray[arrayIndex];
-            arrayIndex++;
+                currentText.text = currentArray[currentArrayIndex];
+            currentArrayIndex++;
             showBox = false;
         }
 
-        if(arrayIndex == currentArray.Count + 1)
+        if(currentArrayIndex == currentArray.Count + 1)
         {
-            twoArrayindex++;
-            arrayIndex = 0;
+            arrayOfArrayIndex++;
+            currentArrayIndex = 0;
             showBox = false;
-            if (twoArrayindex == output.Count)
+            if (arrayOfArrayIndex == output.Count)
             {
-                twoArrayindex = 0;
-                arrayIndex = 0;
+                arrayOfArrayIndex = 0;
+                currentArrayIndex = 0;
             }
-        }
+        }*/
 
         
-   	}
-
-    private void addWeather(List<string> weather)
-    {
-        weather.Add("This is the weather");
     }
 
-    private void addFacts(List<string> facts)
-    {
-        facts.Add("These are the facts");
+    public void say(List<String> dialogue){
+        if (dialogue != null){
+        output = dialogue;
+        isReady = false;
+        arrayIndex = -1;
+        textBox.SetActive(true);
+        next();
+        }
     }
 
-    private void addJokes(List<string> jokes)
-    {
-        jokes.Add("This is joke 1");
-        jokes.Add("This is joke 2");
-        jokes.Add("This is joke 3");
+    public void next(){
+        arrayIndex++;
+        if (arrayIndex == output.Count){
+            currentText.text = "";
+            isReady = true;
+            textBox.SetActive(false);
+        }
+        else{
+            currentText.text = output[arrayIndex];
+        }
     }
 
-    private void addETA(List<string> eta)
-    {
-        eta.Add("This is the eta");
-    }
 
 }
