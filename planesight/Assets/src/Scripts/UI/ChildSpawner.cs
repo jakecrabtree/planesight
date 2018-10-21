@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class ChildSpawner : MonoBehaviour {
 
     [SerializeField] private List<GameObject> childrenToSpawn;
-    [SerializeField] Canvas mCanvas;
     [SerializeField] TrayItem ti;
     float TotalW;
     private RectTransform rt;
@@ -35,7 +34,6 @@ public class ChildSpawner : MonoBehaviour {
     {
         if (TotalW > rt.rect.width)
         {
-            Debug.Log("here");
             float newW = rt.rect.width / childrenRts.Count;
             foreach (RectTransform crt in childrenRts)
             {

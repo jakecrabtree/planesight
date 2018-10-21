@@ -21,7 +21,7 @@ public class TrayItem : MonoBehaviour, IPointerDownHandler
     public void OnPointerDown(PointerEventData eventData)
     {   
         
-        GameObject newItem = Instantiate(obj, Input.mousePosition, transform.rotation, transform.root.parent);
+        GameObject newItem = Instantiate(obj, Input.mousePosition, transform.rotation, transform.root);
         
         newItem.AddComponent<SpawnedTrayItem>();
         newItem.transform.SetParent(transform.root);

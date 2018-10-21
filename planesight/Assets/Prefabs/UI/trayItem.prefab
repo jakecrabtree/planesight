@@ -68,7 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obj: {fileID: 100000, guid: 502a4071839047240892ff17ea8ec488, type: 3}
-  mCanvas: {fileID: 0}
 --- !u!222 &222277219706111110
 CanvasRenderer:
   m_ObjectHideFlags: 1
