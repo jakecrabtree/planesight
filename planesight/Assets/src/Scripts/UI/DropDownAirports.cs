@@ -18,8 +18,8 @@ public class DropDownAirports : MonoBehaviour
 
     void PopulateList()
     {
-        List<string> airports = APIWrapper.getAirports();
+        List<string> airports = ConsoleApplication1.APIWrapper.getAirports();
         
-        dropdown.AddOptions(airports.GetRange(0,min(airports.Count, 500)));
+        dropdown.AddOptions(airports.GetRange(0,min(airports.Count, 800)));
     }
 }

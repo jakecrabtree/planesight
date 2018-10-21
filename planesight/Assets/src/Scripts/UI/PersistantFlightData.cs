@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 using System.Text;
 
 public class PersistantFlightData : MonoBehaviour {
 
 	public string airline;
-	public string flightNumber;
+	public int flightNumber;
 	public string dept;
 	public string arrival;
 
@@ -37,7 +38,11 @@ public class PersistantFlightData : MonoBehaviour {
 			}
 		}
 		airline = sb_airline.ToString();
-		this.flightNumber = sb_flightnum.ToString();
+		this.flightNumber = 0;
+		if (!Int32.TryParse(sb_flightnum.ToString(), out this.flightNumber))
+		{
+  	 	this.flightNumber = -1;
+		}
 		StringBuilder sb_dept = new StringBuilder("");
 		foreach(char c in dept){
 			if (c == '\"'){

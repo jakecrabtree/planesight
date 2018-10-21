@@ -6,20 +6,45 @@ using UnityEngine;
 
 public class ChooseSpeech : MonoBehaviour {
 
-	public enum SpeechType{General, CurrentWeather, TimeLeft, DestinationWeather, CurrentLocationFact, DestinationFact};
+	public enum SpeechType{General, CurrentWeather, TimeLeft, CurrentLocationFact, CurrentCity};
 	HashSet<SpeechType> recentlyUsed;
 	Queue<SpeechType> recentlyUsedQueue;
+	PersistantFlightData flightData;
 	int set_size = 2;
 	float timeBetweenLines = 5f;
 	float timer;
 	
 
+	void UpdateLocationData(){
+		ConsoleApplication1.APIWrapper.initialize();
+	}
 	// Use this for initialization
 	void Start () {
 		recentlyUsed = new HashSet<SpeechType>();
 		recentlyUsedQueue = new Queue<SpeechType>();
 		timer = 0f;
+		flightData = GameObject.Find("PersistantDataObject").GetComponent<PersistantFlightData>();
+		ConsoleApplication1.APIWrapper.initialize(flightData.airline, flightData.flightNumber, flightData.dept, flightData.arrival);
+        //KEEP PERIODICALLY CALLING .INITIALIZE()
+        InvokeRepeating("UpdateLocationData", 0.0f, 300f);
 	}
+
+	string currTemp(){
+        string temperature = ConsoleApplication1.APIWrapper.getWeather();
+		return temperature;
+	}
+
+	List<String> getCity(){
+		List<string> cityInfo = ConsoleApplication1.APIWrapper.getCity(); //<Austin, Facts about austin from wikipedia>
+		return cityInfo;
+	}
+
+	List<String> getLandmark(){
+		List<string> landMarkInfo = ConsoleApplication1.APIWrapper.getLandMark(); //<Grand Canyon, Facts about Grand Canyon>*/
+		return landMarkInfo;
+	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -68,27 +93,50 @@ public class ChooseSpeech : MonoBehaviour {
 		string whichDest = "Phoenix, Arizona";
 		switch(type){
 			case SpeechType.TimeLeft:
-				string timeString = "5 minutes ";
+				string timeString = "101 minutes ";
 				sb.Append("You have ");
 				sb.Append(timeString);
 				sb.Append("remaining in your flight!");
 				dialogue.Add(sb.ToString());
 				break;
 			case SpeechType.CurrentLocationFact:
-				string locationString = "The Grand Canyon";
-				sb.Append("You are right over ");
+				List<String> landmark = getLandmark(); 
+				string locationString = landmark[0];
+				sb.Append("We are super close to ");
 				sb.Append(locationString);
+				dialogue.Add(sb.ToString());
+				sb = new StringBuilder("");
+				sb.Append("Did you know? ");
+				dialogue.Add(sb.ToString());
+				sb = new StringBuilder("");
+				sb.Append(landmark[1]);
 				dialogue.Add(sb.ToString());
 				break;
 			case SpeechType.CurrentWeather:
-				string weatherString = "Sunny, 75 Degrees";
+				string temp = currTemp();
 				sb.Append("The weather right under us is ");
 				dialogue.Add(sb.ToString());
-				sb = new StringBuilder();
-				sb.Append(weatherString);
+				sb = new StringBuilder("");
+				sb.Append(temp);
+				sb.Append(" Degrees Kelvin!");
 				dialogue.Add(sb.ToString());
 				break;
-			case SpeechType.DestinationFact:
+			case SpeechType.CurrentCity:
+				List<String> city = getCity(); 
+				string cityString = city[0];
+				sb.Append("We're right over the great city of ");
+				sb.Append(cityString);
+				dialogue.Add(sb.ToString());
+				sb = new StringBuilder("");
+				sb.Append("Did you know? ");
+				dialogue.Add(sb.ToString());
+				sb = new StringBuilder("");
+				sb.Append(city[1]);
+				dialogue.Add(sb.ToString());
+				break;
+
+			/*case SpeechType.DestinationFact:
+				 
 				string destIntro = "Hey, I saw you're going to";
 				string destFact = "Did you know that it was founded on Valentines Day, 1912?";
 				sb.Append(destIntro);
@@ -97,8 +145,8 @@ public class ChooseSpeech : MonoBehaviour {
 				sb = new StringBuilder();
 				sb.Append(destFact);
 				dialogue.Add(sb.ToString());
-				break;
-			case SpeechType.DestinationWeather:
+				break;*/
+			/* case SpeechType.DestinationWeather:
 				string destIntro2 = "You're headed for " + whichDest+ " right?";
 				string destWeatherIntro = "The weather there is ";
 				string destWeather = "Rainy, 60 degrees";
@@ -110,7 +158,7 @@ public class ChooseSpeech : MonoBehaviour {
 				sb = new StringBuilder();
 				sb.Append(destWeather);
 				dialogue.Add(sb.ToString());
-				break;
+				break;*/
 			case SpeechType.General:
 			default:
 				sb.Append("What do you call the movie where pilots fight to take off?");
