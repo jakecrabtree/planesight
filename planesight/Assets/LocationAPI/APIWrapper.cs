@@ -92,7 +92,7 @@ namespace ConsoleApplication1
 
             string[] words = strippedWord.Split(new char[1] { ',' });
             Console.WriteLine(words[0]);
-            return words[0] + " degrees K";
+            return words[0];
         }
 
         public static List<String> getCity()
