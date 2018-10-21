@@ -49,26 +49,26 @@ public class TextBubble : MonoBehaviour {
 
         if (showBox)
         {
-            if(arrayIndex == currentArray.Count)
+            if(currentArrayIndex == currentArray.Count)
             {
                 currentText.text = "";
                 textBox.SetActive(false);
             }
             else
-                currentText.text = currentArray[arrayIndex];
-            arrayIndex++;
+                currentText.text = currentArray[currentArrayIndex];
+            currentArrayIndex++;
             showBox = false;
         }
 
-        if(arrayIndex == currentArray.Count + 1)
+        if(currentArrayIndex == currentArray.Count + 1)
         {
-            twoArrayindex++;
-            arrayIndex = 0;
+            arrayOfArrayIndex++;
+            currentArrayIndex = 0;
             showBox = false;
-            if (twoArrayindex == output.Count)
+            if (arrayOfArrayIndex == output.Count)
             {
-                twoArrayindex = 0;
-                arrayIndex = 0;
+                arrayOfArrayIndex = 0;
+                currentArrayIndex = 0;
             }
         }*/
 
