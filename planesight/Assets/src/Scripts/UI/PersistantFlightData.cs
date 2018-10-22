@@ -37,7 +37,7 @@ public class PersistantFlightData : MonoBehaviour {
 				sb_flightnum.Append(c);
 			}
 		}
-		airline = sb_airline.ToString();
+		airline = sb_airline.ToString().ToUpper();
 		this.flightNumber = 0;
 		if (!Int32.TryParse(sb_flightnum.ToString(), out this.flightNumber))
 		{

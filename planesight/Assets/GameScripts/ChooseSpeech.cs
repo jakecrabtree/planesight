@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class ChooseSpeech : MonoBehaviour {
 
-	public enum SpeechType{General, CurrentWeather, TimeLeft, CurrentLocationFact, CurrentCity};
+	public enum SpeechType{General, CurrentWeather, Altitude, Speed, TimeLeft, CurrentLocationFact, CurrentCity};
 	HashSet<SpeechType> recentlyUsed;
 	Queue<SpeechType> recentlyUsedQueue;
 	PersistantFlightData flightData;
@@ -26,6 +26,7 @@ public class ChooseSpeech : MonoBehaviour {
 		flightData = GameObject.Find("PersistantDataObject").GetComponent<PersistantFlightData>();
 		ConsoleApplication1.APIWrapper.initialize(flightData.airline, flightData.flightNumber, flightData.dept, flightData.arrival);
         //KEEP PERIODICALLY CALLING .INITIALIZE()
+		ConsoleApplication1.APIWrapper.initialize();
         InvokeRepeating("UpdateLocationData", 0.0f, 300f);
 	}
 
@@ -90,7 +91,6 @@ public class ChooseSpeech : MonoBehaviour {
 	List<String> speak(SpeechType type){
 		StringBuilder sb = new StringBuilder("");
 		List<String> dialogue = new List<String>();
-		string whichDest = "Phoenix, Arizona";
 		switch(type){
 			case SpeechType.TimeLeft:
 				string timeString = "101 minutes ";
@@ -100,8 +100,8 @@ public class ChooseSpeech : MonoBehaviour {
 				dialogue.Add(sb.ToString());
 				break;
 			case SpeechType.CurrentLocationFact:
-				List<String> landmark = getLandmark(); 
-				string locationString = landmark[0];
+				//List<String> landmark = new List<String>({"",""}); 
+				string locationString = "Mississippi River";//landmark[0]; 
 				sb.Append("We are super close to ");
 				sb.Append(locationString);
 				dialogue.Add(sb.ToString());
@@ -109,12 +109,12 @@ public class ChooseSpeech : MonoBehaviour {
 				sb.Append("Did you know? ");
 				dialogue.Add(sb.ToString());
 				sb = new StringBuilder("");
-				sb.Append(landmark[1]);
+				sb.Append(/* landmark[1]*/ "The Mississippi River is the chief river of the second-largest drainage system on the North American continent, second only to the Hudson Bay drainage system.");
 				dialogue.Add(sb.ToString());
 				break;
 			case SpeechType.CurrentWeather:
 				string temp = currTemp();
-				sb.Append("The weather right under us is ");
+				sb.Append("The temperature right under us is ");
 				dialogue.Add(sb.ToString());
 				sb = new StringBuilder("");
 				sb.Append(temp);
@@ -132,6 +132,17 @@ public class ChooseSpeech : MonoBehaviour {
 				dialogue.Add(sb.ToString());
 				sb = new StringBuilder("");
 				sb.Append(city[1]);
+				//sb.Append("Memphis is a city on the Mississippi River in southwest Tennessee, famous for the influential strains of blues, soul and rock 'n' roll that originated there.");
+				dialogue.Add(sb.ToString());
+				break;
+			case SpeechType.Altitude:
+				sb.Append("Whoa, we're currently flying at ");
+				sb.Append("30100 feet!");
+				dialogue.Add(sb.ToString());
+				break;
+			case SpeechType.Speed:
+				sb.Append("We're bopping along at ");
+				sb.Append("300 miles per hour!");
 				dialogue.Add(sb.ToString());
 				break;
 
